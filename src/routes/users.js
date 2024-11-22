@@ -5,12 +5,37 @@ const router = express.Router();
 
 // Tambahkan User
 router.post('/users', async (req, res) => {
-  const data = req.body;
-  data.createdAt = new Date().toISOString();
-  data.updatedAt = new Date().toISOString();
+  const { UserId, email, name, preferences, budget } = req.body;
+
+  // Validasi input
+  if (!UserId || !email || !name || !preferences || !budget) {
+    return res.status(400).json({
+      error: 'All fields (UserId, email, name, preferences, budget) are required',
+    });
+  }
+
+  // Tambahkan waktu
+  const createdAt = new Date().toISOString();
+  const updatedAt = createdAt;
+
+  // Format data baru
+  const newUser = {
+    UserId,
+    email,
+    name,
+    preferences,
+    budget,
+    createdAt,
+    updatedAt,
+  };
+
   try {
-    const docRef = await db.collection('Users').add(data);
-    res.status(201).json({ message: 'User added successfully', id: docRef.id });
+    const docRef = await db.collection('Users').add(newUser);
+    res.status(201).json({
+      message: 'User added successfully',
+      id: docRef.id,
+      data: newUser,
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -20,7 +45,10 @@ router.post('/users', async (req, res) => {
 router.get('/users', async (req, res) => {
   try {
     const snapshot = await db.collection('Users').get();
-    const users = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const users = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
     res.status(200).json({ users });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -44,11 +72,28 @@ router.get('/users/:id', async (req, res) => {
 // Perbarui User
 router.put('/users/:id', async (req, res) => {
   const { id } = req.params;
-  const data = req.body;
-  data.updatedAt = new Date().toISOString();
+  const { UserId, email, name, preferences, budget } = req.body;
+
+  if (!UserId || !email || !name || !preferences || !budget) {
+    return res.status(400).json({
+      error: 'All fields (UserId, email, name, preferences, budget) are required',
+    });
+  }
+
+  const updatedAt = new Date().toISOString();
+
+  const updatedUser = {
+    UserId,
+    email,
+    name,
+    preferences,
+    budget,
+    updatedAt,
+  };
+
   try {
-    await db.collection('Users').doc(id).update(data);
-    res.status(200).json({ message: 'User updated successfully' });
+    await db.collection('Users').doc(id).update(updatedUser);
+    res.status(200).json({ message: 'User updated successfully', data: updatedUser });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
