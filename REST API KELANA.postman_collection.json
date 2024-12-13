@@ -1,0 +1,928 @@
+{
+	"info": {
+		"_postman_id": "45c006f3-ccd9-4942-8954-74f47370bb1f",
+		"name": "REST API KELANA",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" width=\"2162\" height=\"1530\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30380804"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get data users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/users",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request.\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Post data users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"budget\": 5000000,\n  \"UserId\": \"KodokHamil\",\n  \"email\": \"andryanaufal@gmail.com\",\n  \"name\": \"Andrya Muhammad Naufal\",\n  \"password\": \"12345678\",\n  \"preferences\": [\n    \"Pegunungan\",\"Pantai\"\n  ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/users",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "post user baru dengan menggunakan format body seperti dibawah\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Get data users based on id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/users/{{id}}",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{id}}"
+							]
+						},
+						"description": "ini adalah metode GET untuk memanggil data user berdasarkan id, id dapat diganti ke id user yang diinginkan disini id yang dipakai= \"Aa1ZTMPXZIi96HWyqbMN\"\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Update data users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"budget\": 5000000,\n  \"UserId\": \"Username\",\n  \"email\": \"andryanaufal@gmail.com\",\n  \"name\": \"Andrya Muhammad Naufal\",\n  \"password\": \"12345678\",\n  \"preferences\": [\n    \"Pegunungan\",\"Pantai\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/users/{{id}}",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{id}}"
+							]
+						},
+						"description": "ubah idnya untuk menentukan user mana yang mau di update datanya. gunakan format body dibawah\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete data users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/users/{{id}}",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{id}}"
+							]
+						},
+						"description": "ini adalah metode untuk DELETE user dari database, gunakan dengan harti hati. Ubah id untuk menentukan user mana yang dihapus (id = \"Qufd1IMZAIFaNwCQwILz\").\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Destinations",
+			"item": [
+				{
+					"name": "Get data Destinations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/Destinations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Destinations"
+							]
+						},
+						"description": "baseUrl sudah saya setting di environment, cukup ubah bagian paling akhir setelah /api yaitu yang sebelumnya /users ganti ke /Destinations untuk GET ke collection Destinations"
+					},
+					"response": []
+				},
+				{
+					"name": "Post data Destinations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"category\": [\n    \"Cagar Alam\"\n  ],\n  \"city\": \"Bandung\",\n  \"closingTime\": 17,\n  \"description\": \"Taman Kupu-Kupu Cihanjuang Bandung ini,sepertinya telah menambah daftar objek wisata di Bandung yang unik dan menarik seperti halnya theme park Jendela Alam Bandung sekaligus bernilai edukasi yang sangat tinggi buat anak-anak dan sebagai sarana pembelajaran kepada anak kita bahwa pelestarian hewan langka dan cantik ini bisa diajarkan sejak usia dini.Dan faktanya, meskipun relatif masih anyar, namun salah satu tempat wisata keluarga di bandung ini nyatanya berhasil banyak menarik atensi atau perhatian wisatawan lokal kota Bandung maupun wisatawan luar daerah yang sedang liburan di Bandung. Lokasi Tempat wisatanya yang memang masih sangat rindang dan sejuk, ditunjang lagi dengan design interior taman kupu-kupu yang ditata sangat begitu detil dan menarik. Apabila melancong ke kawasan wisata yang satu ini, diharapkan anak-anak anda bisa memperoleh informasi tentang bagaimana proses metamorfosis seekor kupu-kupu mulai dari bibit larva hingga tumbuh besar secara sempura.\",\n  \"destinationId\": \"307\",\n  \"duration\": \"60\",\n  \"imgUrl\": \"https://storage.googleapis.com/archive-kelana/city-image/bandung.jpeg\",\n  \"location\": {\n    \"latitude\": -6.8590047,\n    \"longitude\": 107.568779\n  },\n  \"name\": \"Taman Kupu-Kupu Cihanjuang\",\n  \"openingTime\": 8,\n  \"priceRange\": {\n    \"min\": 10000,\n    \"max\": 10000\n  },\n  \"rating\": 4\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/Destinations",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"Destinations"
+							]
+						},
+						"description": "post destinasi baru dengan menggunakan format body seperti dibawah\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Get data Destinations id based",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/Destinations/{{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Destinations",
+								"{{id}}"
+							]
+						},
+						"description": "ini adalah metode GET untuk memanggil data destinations berdasarkan id, id dapat diganti ke id user yang diinginkan disini id yang dipakai= \"0pLVOiAFJbYZsTtaY0iP\"\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Update data users Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"category\": [\n    \"Cagar Alam\"\n  ],\n  \"city\": \"Bandung\",\n  \"closingTime\": 17,\n  \"description\": \"Taman Kupu-Kupu Cihanjuang Bandung ini,sepertinya telah menambah daftar objek wisata di Bandung yang unik dan menarik seperti halnya theme park Jendela Alam Bandung sekaligus bernilai edukasi yang sangat tinggi buat anak-anak dan sebagai sarana pembelajaran kepada anak kita bahwa pelestarian hewan langka dan cantik ini bisa diajarkan sejak usia dini.Dan faktanya, meskipun relatif masih anyar, namun salah satu tempat wisata keluarga di bandung ini nyatanya berhasil banyak menarik atensi atau perhatian wisatawan lokal kota Bandung maupun wisatawan luar daerah yang sedang liburan di Bandung. Lokasi Tempat wisatanya yang memang masih sangat rindang dan sejuk, ditunjang lagi dengan design interior taman kupu-kupu yang ditata sangat begitu detil dan menarik. Apabila melancong ke kawasan wisata yang satu ini, diharapkan anak-anak anda bisa memperoleh informasi tentang bagaimana proses metamorfosis seekor kupu-kupu mulai dari bibit larva hingga tumbuh besar secara sempura.\",\n  \"destinationId\": \"307\",\n  \"duration\": \"60\",\n  \"imgUrl\": \"https://storage.googleapis.com/archive-kelana/city-image/bandung.jpeg\",\n  \"location\": {\n    \"latitude\": -6.8590047,\n    \"longitude\": 107.568779\n  },\n  \"name\": \"Taman Kupu-Kupu Cihanjuang\",\n  \"openingTime\": 8,\n  \"priceRange\": {\n    \"min\": 10000,\n    \"max\": 10000\n  },\n  \"rating\": 4\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users/{{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{id}}"
+							]
+						},
+						"description": "ubah idnya untuk menentukan destinasi mana yang mau di update datanya. gunakan format body dibawah\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete data users Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/Destinations/ONcJWF8sLRwRjwFLS0Qf",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"Destinations",
+								"ONcJWF8sLRwRjwFLS0Qf"
+							]
+						},
+						"description": "ini adalah metode untuk DELETE destinations dari database, gunakan dengan hati hati. Ubah id untuk menentukan user mana yang dihapus contoh disini: (id = \"ONcJWF8sLRwRjwFLS0Qf\").\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "History",
+			"item": [
+				{
+					"name": "Get data history",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/history",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"history"
+							]
+						},
+						"description": "digunakan untuk mendapatkan semua data dari koleksi history dalam database\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Post data history",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"plan\",\n  \"destinationId\": \"hutanbambu\",\n  \"historyId\": \"Hist(UserId)\",\n  \"userId\": \"Username\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/history",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"history"
+							]
+						},
+						"description": "post history baru dengan menggunakan format body seperti dibawah\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Get data history id based",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/history/{{id}}",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"history",
+								"{{id}}"
+							]
+						},
+						"description": "ini adalah metode GET untuk memanggil data history berdasarkan id, id dapat diganti ke id user yang diinginkan disini id yang dipakai= \"Lk51BQz5ByrYH3FDqq3W\"\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Update data history",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"plan\",\n  \"destinationId\": \"destinationId\",\n  \"historyId\": \"Hist(UserId)\",\n  \"userId\": \"Username\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/history/{{id}}",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"history",
+								"{{id}}"
+							]
+						},
+						"description": "ubah idnya untuk menentukan user mana yang mau di update datanya. gunakan format body dibawah\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete data history",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/history/hist2",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"history",
+								"hist2"
+							]
+						},
+						"description": "ini adalah metode untuk DELETE history dari database, gunakan dengan harti hati. Ubah id untuk menentukan user mana yang dihapus (id = \"hist2\").\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recommendations",
+			"item": [
+				{
+					"name": "Get data recommendations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/recommendations",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"recommendations"
+							]
+						},
+						"description": "digunakan untuk mendapatkan semua data dari koleksi Recommendations dalam database\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Post data recommendations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Afternoon\": {\n    \"Description\": \"Hutan Bambu qoiufhbqoiuiuqwegfgq\",\n    \"Destination\": \"Hutan Bambu\",\n    \"PriceTotal\": \"Rp.500.000\"\n  },\n  \"Date\": \"5 December 2024\",\n  \"Day\": 1,\n  \"Evening\": {\n    \"Description\": \"dugem qoiufhbqoiuiuqwegfgq\",\n    \"Destination\": \"dugem\",\n    \"PriceTotal\": \"Rp.500.000\"\n  },\n  \"Morning\": {\n    \"Description\": \"Uluwatu beach fowaehbefiuobaouigebaoid\",\n    \"Destination\": \"Uluwatu Beach\",\n    \"PriceTotal\": \"Rp.500.000\"\n  },\n  \"User Id\": \"\",\n  \"recommendationId\": \"\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/recommendations",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"recommendations"
+							]
+						},
+						"description": "post recommendation baru yang mana keluaran model ML dengan menggunakan format body seperti dibawah\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Get data recommendations id based",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/recommendations/4Ve2ye7GZA2aS5M9EMkn",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"recommendations",
+								"4Ve2ye7GZA2aS5M9EMkn"
+							]
+						},
+						"description": "ini adalah metode GET untuk memanggil data recommendations berdasarkan id, id dapat diganti ke id user yang diinginkan disini id yang dipakai= \"4Ve2ye7GZA2aS5M9EMkn\"\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Update data recommendations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Afternoon\": {\n    \"Description\": \"Hutan Bambu qoiufhbqoiuiuqwegfgq\",\n    \"Destination\": \"Hutan Bambu\",\n    \"PriceTotal\": \"Rp.500.000\"\n  },\n  \"Date\": \"5 December 2024\",\n  \"Day\": 1,\n  \"Evening\": {\n    \"Description\": \"dugem bro qoiufhbqoiuiuqwegfgq\",\n    \"Destination\": \"dugem\",\n    \"PriceTotal\": \"Rp.500.000\"\n  },\n  \"Morning\": {\n    \"Description\": \"Uluwatu beach fowaehbefiuobaouigebaoid\",\n    \"Destination\": \"Uluwatu Beach\",\n    \"PriceTotal\": \"Rp.500.000\"\n  },\n  \"User Id\": \"\",\n  \"recommendationId\": \"\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/recommendations/4Ve2ye7GZA2aS5M9EMkn",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"recommendations",
+								"4Ve2ye7GZA2aS5M9EMkn"
+							]
+						},
+						"description": "ubah idnya untuk menentukan user mana yang mau di update datanya. gunakan format body dibawah\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete data history Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://kelana-2.et.r.appspot.com/api/recommendations/rec1",
+							"protocol": "https",
+							"host": [
+								"kelana-2",
+								"et",
+								"r",
+								"appspot",
+								"com"
+							],
+							"path": [
+								"api",
+								"recommendations",
+								"rec1"
+							]
+						},
+						"description": "ini adalah metode untuk DELETE recommendations dari database, gunakan dengan harti hati. Ubah id untuk menentukan user mana yang dihapus (id = \"rec1\").\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
